@@ -4,8 +4,8 @@ alias c='clear'
 alias mkdir='mkdir -pv'
 alias ports='netstat -tulanp'
 alias pp="ps axuf | less"
-alias -g H="| head"
-alias -g T="| tail"
+alias h='head'
+alias t='tail'
 ds () { du -sh "${1-.}"/* | sort -hr ; }
 alias fn="find . -iname "
 alias fd="find . -type d -name"
