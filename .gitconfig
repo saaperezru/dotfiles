@@ -1,0 +1,110 @@
+[alias]
+    ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    find = "!git ls-files | grep -i"
+    grep = grep -Ii
+    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+    # Find text in any commit ever
+    grep-commit = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"
+    ci = commit
+    co = checkout
+    cob = checkout -b
+    br = branch 
+    diff = diff --word-diff
+    dc = diff --cached
+    aa = add --all
+    au = add --update
+    # add by patch - looks at each change, and asks if we want to put it in the repo.
+    ap = add --patch
+
+    # ## Taken from https://github.com/GitAlias/gitalias/blob/master/gitalias.txt ##
+
+      # Search for a given string in all patches and print commit messages.
+      # Posted by Mikko Rantalainen on StackOverflow.
+      #
+      # Example: search for any commit that adds or removes string "foobar"
+      #     git searchcommits foobar
+      #
+      # Example: search commits for string "foobar" in directory src/lib
+      #     git searchcommits foobar src/lib
+      #
+      # Example: search commits for "foobar", print full diff of commit with 1 line context
+      #     git searchcommits foobar --pickaxe-all -U1 src/lib
+      searchcommits = !"f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+      # Serve the local directory by starting a git server daemon, so others can pull/push from my machine
+      serve = "-c daemon.receivepack=true daemon --base-path=. --export-all --reuseaddr --verbose"
+      # Friendly wording is easier to remember.
+      # Thanks to http://gggritso.com/human-git-aliases
+      branches = branch -a
+      tags = tag
+      stashes = stash list
+
+      # churn: show log of files that have many changes
+      #
+      #   * Written by (Corey Haines)[http://coreyhaines.com/]
+      #   * Scriptified by Gary Bernhardt
+      #   * Obtained from https://github.com/garybernhardt/dotfiles/blob/master/bin/git-churn
+      #   * Edited for sixarm_git_config repo by Joel Parker Henderson
+      #   * Comments by Mislav http://mislav.uniqpath.com/2014/02/hidden-documentation/
+      #
+      # Show churn for whole repo:
+      #
+      #   $ git churn
+      #
+      # Show churn for specific directories:
+      #
+      #   $ git churn app lib
+      #
+      # Show churn for a time range:
+      #
+      #   $ git churn --since='1 month ago'
+      #
+      # These are all standard arguments to `git log`.
+      #
+      # It's possible to get valuable insight from history of a project not only
+      # by viewing individual commits, but by analyzing sets of changes as a whole.
+      # For instance, git-log-churn compiles stats about which files change the most.
+      #
+      # For example, to see where work on an app was focused on in the past month:
+      #
+      #     $ git churn --since='1 month ago' app/ | tail
+      #
+      # This can also highlight potential problems with technical debt in a project.
+      # A specific file changing too often is generally a red flag, since it probably
+      # means the file either needed to be frequently fixed for bugs, or the file
+      # holds too much responsibility and should be split into smaller units.
+      #
+      # Similar methods of history analysis can be employed to see which people were
+      # responsible recently for development of a certain part of the codebase.
+      #
+      # For instance, to see who contributed most to the API part of an application:
+      #
+      #    $ git log --format='%an' --since='1 month ago' app/controllers/api/ | \
+      #      sort | uniq -c | sort -rn | head
+      #
+      #    109 Alice Anderson
+      #    13 Bob Brown
+      #    7 Carol Clark
+      #
+      churn = !git log --all --find-copies --find-renames --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count\tfile"} {print $1 "\t" $2}' | sort -g
+
+
+      # Reset and undo aliases are ways to move backwards on the commit chain.
+      # We find that novices prefer the wording "undo"; experts prefer "reset".
+      reset-commit       = reset --soft HEAD~1
+      reset-commit-hard  = reset --hard HEAD~1
+      reset-commit-clean = !git reset --hard HEAD~1 && git clean -fd
+      reset-to-pristine   = !git reset --hard && git clean -ffdx
+      reset-to-upstream  = !git reset --hard $(git upstream-name)
+
+      # Undo is simply a synonym for "reset" because "undo" can help novices.
+      undo-commit        = reset --soft HEAD~1
+      undo-commit-hard   = reset --hard HEAD~1
+      undo-commit-clean  = !git reset --hard HEAD~1 && git clean -fd
+      undo-to-pristine   = !git reset --hard && git clean -ffdx
+      undo-to-upstream   = !git reset --hard $(git upstream-name)
+
+      # Nicknames
+      uncommit = reset --soft HEAD~1
+      unadd = reset HEAD
+      unstage = reset HEAD
