@@ -1,0 +1,37 @@
+#Shortcuts
+alias g='git'
+alias c='clear'
+alias mkdir='mkdir -pv'
+alias ports='netstat -tulanp'
+alias pp="ps axuf | less"
+alias -g H="| head"
+alias -g T="| tail"
+ds () { du -sh "${1-.}"/* | sort -hr ; }
+alias fn="find . -iname "
+alias fd="find . -type d -name"
+alias ff="find . -type f -name"
+
+
+# Coloring basic outputs
+alias grep="grep --color"
+alias ll='ls -AlhF --color=auto'
+
+#Navigation
+alias ..='cd ..'
+alias ...='cd ../../'
+function up {
+    if [[ "$#" < 1 ]] ; then
+        cd ..
+    else
+        CDSTR=""
+        for i in {1..$1} ; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
+}
+
+#Git
+alias gunmod='git status | grep "modified" | awk "{print \$2}" | xargs -I{} git checkout -- {}'
+alias gst='git status'
+alias gcm='git commit -m'
