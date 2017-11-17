@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+        mavenCentral()
+}
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+test {
+    useTestNG()
+    testLogging {
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full" // default is "short"
+    }
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    }
+}
+
+dependencies {
+    testCompile group: 'org.testng', name: 'testng', version: '6.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}
