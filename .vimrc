@@ -10,6 +10,11 @@ nmap <C-j> <C-w><C-j>
 nmap <C-k> <C-w><C-k>
 nmap <C-h> <C-w><C-h>
 nmap <C-l> <C-w><C-l>
+" resize current buffer 
+nnoremap h :vertical resize -2<cr>
+nnoremap j :resize +2<cr>
+nnoremap k :resize -2<cr>
+nnoremap l :vertical resize +2<cr>
 set expandtab
 set tabstop=8
 set softtabstop=4
