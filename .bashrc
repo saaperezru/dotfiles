@@ -4,6 +4,12 @@ then
     git clone -q https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
 fi;
 
+if [[ ! -d ~/.tmux/plugins/tpm ]];
+then
+    echo " == Downloading tmux plugin manager == "
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi;
+
 if [[ -a ~/.liquidprompt/liquidprompt ]]; then [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt; fi;
 if [[ -a /usr/share/git/completion/git-completion.bash ]]; then [[ $- = *i* ]] && source /usr/share/git/completion/git-completion.bash; fi;
 if [[ -a ~/.alias ]]; then [[ $- = *i* ]] && source ~/.alias; fi;
