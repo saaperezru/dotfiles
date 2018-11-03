@@ -11,6 +11,8 @@ then
 fi;
 
 if [[ -a ~/.liquidprompt/liquidprompt ]]; then [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt; fi;
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 if [[ -a /usr/share/git/completion/git-completion.bash ]]; then [[ $- = *i* ]] && source /usr/share/git/completion/git-completion.bash; fi;
 if [[ -a ~/.alias ]]; then [[ $- = *i* ]] && source ~/.alias; fi;
 

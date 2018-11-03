@@ -35,3 +35,4 @@ function up {
 alias gunmod='git status | grep "modified" | awk "{print \$2}" | xargs -I{} git checkout -- {}'
 alias gst='git status'
 alias gcm='git commit -m'
+alias gca='git commit --amend'

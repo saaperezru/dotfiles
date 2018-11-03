@@ -1,9 +1,5 @@
-" Ctrl-P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 " Nerdtree binding
 map <C-e> :NERDTreeToggle<CR>
-
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -16,11 +12,10 @@ call vundle#begin()
 
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
-    Plugin 'Valloric/YouCompleteMe'
-
+    set rtp+=~/.fzf/
+    Plugin 'junegunn/fzf.vim'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'fholgado/minibufexpl.vim'
+    Plugin 'w0rp/ale'
 
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'altercation/vim-colors-solarized'
@@ -45,3 +40,21 @@ call vundle#begin()
     "
     " see :h vundle for more details or wiki for FAQ
     " Put your non-Plugin stuff after this line
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+let mapleader = " "
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR> nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>. :AgIn 
+
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
