@@ -1,0 +1,19 @@
+{
+  "name": "html-tailwind-pug-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "mkdir dist & cp node_modules/tailwindcss/dist/tailwind.min.css ./dist/ && cp node_modules/@fortawesome/fontawesome-free/js/all.min.js ./dist/font-awesome.min.js && gulp",
+    "boilerplate": "convert -size 100x100 canvas:skyblue image.png"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.5.0",
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^4.0.1",
+    "tailwindcss": "^0.7.2"
+  }
+}
