@@ -14,7 +14,9 @@
         ~/.vimrc: .vimrc
         ~/.inputrc: .inputrc
         ~/.gitconfig: .gitconfig
+        ~/.config/: '.config/'
 
 - shell:
       - [git submodule update --init --recursive, Installing submodules]
+      - [git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks/]
       - echo "source ~/.bashrc_local;" >> ~/.bashrc

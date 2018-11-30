@@ -22,4 +22,4 @@ set shiftwidth=4
 set autoindent
 set number 
 
-source .vimrc.vundle
+source ~/.vimrc.vundle

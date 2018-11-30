@@ -36,3 +36,4 @@ alias gunmod='git status | grep "modified" | awk "{print \$2}" | xargs -I{} git 
 alias gst='git status'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
+alias tmux='tmux -u'

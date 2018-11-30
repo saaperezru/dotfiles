@@ -1,0 +1,12 @@
+[Unit]
+Description=i3lock on suspend
+Before=suspend.target
+
+[Service]
+User=santi
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -c 141414
+
+[Install]
+WantedBy=suspend.target
