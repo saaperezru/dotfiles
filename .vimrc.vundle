@@ -12,8 +12,12 @@ call vundle#begin()
 
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
+    "set rtp+=~/.fzf/
     set rtp+=~/.fzf/
+    set rtp+=~/.vim/bundle/fzf
+    Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
+    "Plugin 'junegunn/fzf.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'w0rp/ale'
 
