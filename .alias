@@ -10,7 +10,7 @@ ds () { du -sh "${1-.}"/* | sort -hr ; }
 alias fn="find . -iname "
 alias fd="find . -type d -name"
 alias ff="find . -type f -name"
-
+alias gdc='git diff --cached --ignore-space-at-eol -b -w --ignore-blank-lines'
 
 # Coloring basic outputs
 alias grep="grep --color"
