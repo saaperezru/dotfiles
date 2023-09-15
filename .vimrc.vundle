@@ -49,6 +49,7 @@ nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR> nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>w :execute 'Ag ' . input('Ag/')<c-r><c-w><CR>
 nnoremap <silent> <leader>. :AgIn 
 
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
@@ -56,5 +57,8 @@ nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
 
+"To paste current word under cursor into fzf window do <C-r><C-w>
+"To send search results from Ag to the quickfix list just select all <Alt-a>
+"and press enter (https://github.com/junegunn/fzf.vim/issues/586)
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)

@@ -1,4 +1,5 @@
 setxkbmap -option caps:ctrl_modifier
+setxkbmap us -variant altgr-intl
 xbindkeys --poll-rc
 export LC_ALL=en_US.UTF-8
 if [[ ! -d ~/.liquidprompt ]];

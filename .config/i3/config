@@ -17,7 +17,7 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font Consolas Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -30,7 +30,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st -f "Consolas"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -167,7 +167,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     position top
-    font pango:DejaVu Sans Mono, Awesome 8
+    font pango:Inconsolata, Icons 9 
     status_command i3blocks
 }
 # Spotify shortcuts using sp https://gist.github.com/streetturtle/fa6258f3ff7b17747ee3
@@ -176,7 +176,9 @@ bindsym $mod+less exec "sp prev"
 bindsym $mod+slash exec "sp play"
 
 # Use i3lock to lock the computer
-bindsym $mod+Pause exec i3lock -c 141414
+bindsym $mod+Delete exec i3lock -c 141414
+bindsym Print exec gnome-screenshot -i
+bindsym Control+Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
 exec xautolock -time 15 -locker i3lock -c 141414
 
 bindsym $mod+g exec --no-startup-id ~/.config/i3/dmenu_search.sh
