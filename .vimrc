@@ -1,5 +1,7 @@
 set hlsearch
+set t_Co=16
 syntax on
+set background=dark " dark | light "
 set cindent
 set smartindent
 au FileType c set makeprg=gcc\ %

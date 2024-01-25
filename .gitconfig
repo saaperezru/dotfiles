@@ -108,3 +108,6 @@
       uncommit = reset --soft HEAD~1
       unadd = reset HEAD
       unstage = reset HEAD
+[user]
+	name = saaperezru
+	email = saaperezru@gmail.com
