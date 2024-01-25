@@ -1,7 +1,7 @@
-setxkbmap -option caps:ctrl_modifier
+#setxkbmap -option caps:ctrl_modifier
 setxkbmap us -variant altgr-intl
-xbindkeys --poll-rc
-export LC_ALL=en_US.UTF-8
+#xbindkeys --poll-rc
+#export LC_ALL=en_US.UTF-8
 if [[ ! -d ~/.liquidprompt ]];
 then
     echo " == Downloading liquidprompt == "
@@ -13,6 +13,8 @@ then
     echo " == Downloading tmux plugin manager == "
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi;
+
+eval "$(direnv hook bash)"
 
 if [[ -a ~/.liquidprompt/liquidprompt ]]; then [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt; fi;
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
