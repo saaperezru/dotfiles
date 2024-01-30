@@ -1,0 +1,8 @@
+sample() {
+  if [ "$#" -lt 2 ]; then
+    echo "Usage: ${FUNCNAME[0]} [ARG0] [ARG1]"
+  else
+    A=${1:-dev}
+    echo "Sample function with ARGS $A $2"
+  fi
+}
