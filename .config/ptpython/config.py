@@ -57,11 +57,11 @@ def configure(repl):
     repl.wrap_lines = True
 
     # Mouse support.
-    repl.enable_mouse_support = True
+    repl.enable_mouse_support = False
 
     # Complete while typing. (Don't require tab before the
     # completion menu is shown.)
-    repl.complete_while_typing = True
+    repl.complete_while_typing = False
 
     # Fuzzy and dictionary completion.
     repl.enable_fuzzy_completion = False
@@ -88,7 +88,7 @@ def configure(repl):
     # Note: When enable, please disable the `complete_while_typing` option.
     #       otherwise, when there is a completion available, the arrows will
     #       browse through the available completions instead of the history.
-    repl.enable_history_search = False
+    repl.enable_history_search = True
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
@@ -130,7 +130,7 @@ def configure(repl):
     repl.max_brightness = 1.0  # Decrease for light terminal backgrounds.
 
     # Syntax.
-    repl.enable_syntax_highlighting = True
+    repl.enable_syntax_highlighting = False
 
     # Get into Vi navigation mode at startup
     repl.vi_start_in_navigation_mode = True
@@ -142,6 +142,7 @@ def configure(repl):
     #repl.install_ui_colorscheme("my-colorscheme", Style.from_dict(_custom_ui_colorscheme))
     #repl.use_ui_colorscheme("solarized-dark")
 
+    repl.enable_output_formatting = True
     # Add custom key binding for PDB.
     """
     @repl.add_key_binding("c-b")
