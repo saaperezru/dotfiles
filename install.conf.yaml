@@ -1,23 +1,22 @@
 - defaults:
-        link:
-                  relink: true
-
+    link:
+      relink: true
 - clean: ['~']
 
 - link:
-        ~/.proto/: '.proto/'
-        ~/.tmux.conf: .tmux.conf
-        ~/.bashrc_local: .bashrc
-        ~/.bash_profile: .bash_profile
-        ~/.alias: .alias
-        ~/.vimrc.vundle: .vimrc.vundle
-        ~/.vimrc: .vimrc
-        ~/.inputrc: .inputrc
-        ~/.gitconfig: .gitconfig
-        ~/.config/: '.config/'
+  ~/.proto/: '.proto/'
+  ~/.tmux.conf: .tmux.conf
+  ~/.bashrc_local: .bashrc
+  ~/.bash_profile: .bash_profile
+  ~/.alias: .alias
+  ~/.vimrc.vundle: .vimrc.vundle
+  ~/.vimrc: .vimrc
+  ~/.inputrc: .inputrc
+  ~/.gitconfig: .gitconfig
+  ~/.config/: '.config/'
 
 - shell:
-      - [git submodule update --init --recursive, Installing submodules]
-      - [git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks/]
-      - [git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim]
-      - echo "source ~/.bashrc_local;" >> ~/.bashrc
+  - ["git submodule update --init --recursive", Installing submodules]
+  - ["git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks/", Installing i3blocks]
+  - ["git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim", Installing Vim Vundle]
+  - echo "source ~/.bashrc_local;" >> ~/.bashrc
