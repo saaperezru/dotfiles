@@ -7,3 +7,5 @@ sudo systemctl enable nix-daemon
 sudo systemctl start nix-daemon
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 sudo usermod -a arch -G nix-users
+sg nix-users "nix-channel --update"
+sg nix-users "NIXPKGS_ALLOW_INSECURE=1 nix-shell -p python2 python3 poetry"

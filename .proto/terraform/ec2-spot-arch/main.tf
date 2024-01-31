@@ -6,6 +6,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "instance_type" {
+    type = string
+    default = "t3.micro"
+}
+
 resource "aws_vpc" "test-env" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -97,10 +102,8 @@ resource "aws_key_pair" "spot_key" {
 
 resource "aws_spot_instance_request" "test_worker" {
    ami                    = tolist([ for v in jsondecode(data.http.arch_ami.response_body).arch_amis : v.ami if v.type=="std" && v.region == data.aws_region.current.name ])[0]
-  spot_price             = "0.0159"
-  instance_type          = "t3.small"
-  #spot_price             = "0.92"
-  #instance_type          = "p3.2xlarge"
+  spot_price             = data.aws_ec2_spot_price.instance.spot_price
+  instance_type          = var.instance_type
   spot_type              = "one-time"
   wait_for_fulfillment   = "true"
   key_name               = "${aws_key_pair.spot_key.key_name}"
@@ -117,12 +120,22 @@ resource "aws_spot_instance_request" "test_worker" {
   subnet_id = "${aws_subnet.subnet-uno.id}"
 }
 
+output "instance_ip_addr" {
+    value = aws_spot_instance_request.test_worker.public_dns
+}
+
 data "aws_region" "current" {}
 
 data "http" "arch_ami" {
   url = "https://5nplxwo1k1.execute-api.eu-central-1.amazonaws.com/prod/latest"
 }
 
-output "instance_ip_addr" {
-    value = aws_spot_instance_request.test_worker.public_dns
+data "aws_ec2_spot_price" "instance" {
+  instance_type     = var.instance_type
+  availability_zone = "us-east-1a"
+
+  filter {
+    name   = "product-description"
+    values = ["Linux/UNIX"]
+  }
 }
