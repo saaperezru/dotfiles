@@ -8,7 +8,8 @@ sudo systemctl start nix-daemon
 sudo systemctl enable docker
 sudo systemctl start docker
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-sudo usermod -a arch -G nix-users docker
+sudo usermod -a arch -G nix-users
+sudo usermod -a arch -G docker
 sg nix-users "nix-channel --update"
 sg nix-users "NIXPKGS_ALLOW_INSECURE=1 nix-shell -p python2 python3 poetry"
 sudo systemctl reboot
