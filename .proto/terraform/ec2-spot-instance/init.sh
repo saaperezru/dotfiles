@@ -1,8 +1,14 @@
-sudo apt update
-sudo apt install docker maven default-jdk docker.io awscli mysql-client-core-8.0 python3 ipython3 python3-pip jupyter-core
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.bashrc
+sudo pacman-key --init
+sudo pacman-key --populate
+sudo reflector --country "US" --protocol https,http --score 20 --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman --noconfirm -Syu
+sudo pacman --noconfirm -S networkmanager vim tmux git efibootmgr base-devel nix net-tools fzf github-cli inetutils direnv hexyl xclip docker
+sudo systemctl enable nix-daemon
+sudo systemctl start nix-daemon
+sudo systemctl enable docker
 sudo systemctl start docker
-sudo usermod -aG docker $USER
-#docker run -e MYSQL_DATABASE=dev_cadreon_amp -e MYSQL_USER=cad_amp_api -e MYSQL_PASSWORD=cad_amp_api -e MYSQL_ROOT_PASSWORD=cad_amp_api -p 3306:3306 -d mysql:5.7
-#docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.10.1
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+sudo usermod -a arch -G nix-users docker
+sg nix-users "nix-channel --update"
+sg nix-users "NIXPKGS_ALLOW_INSECURE=1 nix-shell -p python2 python3 poetry"
+sudo systemctl reboot
