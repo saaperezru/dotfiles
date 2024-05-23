@@ -111,3 +111,5 @@
 [user]
 	name = saaperezru
 	email = saaperezru@gmail.com
+[core]
+	excludesfile = /Users/icsantiago.perez/.config/.gitignore_global
