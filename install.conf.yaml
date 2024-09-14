@@ -21,4 +21,5 @@
       - ["git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks/"]
       - ["git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim", Installing Vim Vundle]
       - ["vim +VundleInstall +qall", Installing vim plugins]
+      - ["curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash", Installing nvm]
       - echo "source ~/.bashrc_local;" >> ~/.bashrc
