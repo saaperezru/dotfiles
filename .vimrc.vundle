@@ -29,6 +29,8 @@ call vundle#begin()
 
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'airblade/vim-gitgutter'
+    Plugin 'jalvesaq/Nvim-R'
+
 
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -66,3 +68,23 @@ nnoremap <silent> <leader>ft :Filetypes<CR>
 "and press enter (https://github.com/junegunn/fzf.vim/issues/586)
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
+
+
+" press -- to have Nvim-R insert the assignment operator: <-
+let R_assign_map = "--"
+
+" set a minimum source editor width
+let R_min_editor_width = 80
+
+" make sure the console is at the bottom by making it really wide
+let R_rconsole_width = 1000
+
+" show arguments for functions during omnicompletion
+let R_show_args = 1
+
+" Don't expand a dataframe to show columns by default
+let R_objbr_opendf = 0
+
+" Press the space bar to send lines and selection to R console
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
