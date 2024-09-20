@@ -34,7 +34,10 @@ function up {
 #Git
 alias gunmod='git status | grep "modified" | awk "{print \$2}" | xargs -I{} git checkout -- {}'
 alias gst='git status'
+alias gp='git push'
+alias gpf='git push --force'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
+alias gap='git add -p'
 alias tmux='tmux -u'
 alias ptp='python -m ptpython'

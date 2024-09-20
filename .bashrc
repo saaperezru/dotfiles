@@ -25,3 +25,4 @@ if [[ -a ~/.alias ]]; then [[ $- = *i* ]] && source ~/.alias; fi;
 export HISTSIZE=100000                   # Lots of history.
 export HISTFILESIZE=100000               # Lots of history in the file.
 export HISTIGNORE="ll:fg:bg:j:jobs"      # Uninteresting commands to not record in history.
+set -o ignoreeof

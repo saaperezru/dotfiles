@@ -26,6 +26,9 @@ call vundle#begin()
     Plugin 'bling/vim-airline'
     Plugin 'honza/vim-snippets'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'godlygeek/tabular'
+    Plugin 'junegunn/vim-peekaboo'
+    Plugin 'preservim/tagbar'
 
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'airblade/vim-gitgutter'
@@ -57,6 +60,7 @@ nnoremap <silent> <leader>O :Tags<CR> nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 nnoremap <silent> <leader>w :execute 'Ag ' . input('Ag/')<c-r><c-w><CR>
 nnoremap <silent> <leader>. :AgIn 
+let g:fzf_ag_default_opts = '--hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore tags'
 
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>

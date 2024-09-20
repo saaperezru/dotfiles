@@ -8,6 +8,7 @@ au FileType c set makeprg=gcc\ %
 au FileType cpp set makeprg=g++\ %
 imap jj <Esc>
 nmap ; :
+vmap ; :
 nmap <C-j> <C-w><C-j>
 nmap <C-k> <C-w><C-k>
 nmap <C-h> <C-w><C-h>
