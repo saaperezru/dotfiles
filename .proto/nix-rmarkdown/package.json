@@ -1,0 +1,17 @@
+{
+  "name": "html-tailwind-pug-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^3.0.3",
+    "gulp": "^5.0.0",
+    "gulp-plugin-extras": "^1.0.0",
+    "gulp-shell": "^0.8.0"
+  }
+}
