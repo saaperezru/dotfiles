@@ -17,5 +17,6 @@
         rPackages.AER
         rPackages.foreign
         rPackages.stargazer
+        rPackages.skimr
     ];
 }
