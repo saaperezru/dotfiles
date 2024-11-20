@@ -33,6 +33,8 @@ call vundle#begin()
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'jalvesaq/Nvim-R'
+    Plugin 'bfrg/vim-jqplay'
+    Plugin 'diepm/vim-rest-console'
 
 
     " All of your Plugins must be added before the following line
@@ -92,3 +94,15 @@ let R_objbr_opendf = 0
 " Press the space bar to send lines and selection to R console
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+
+nnoremap <Leader>f :NERDTreeFind<CR>
+" Disable tagbar lazy load to fix airline and tagbar compatibility issue
+" https://github.com/vim-airline/vim-airline/issues/1313
+let g:airline#extensions#tagbar#enabled = 0
+" http://vimcasts.org/transcripts/29/en/
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
