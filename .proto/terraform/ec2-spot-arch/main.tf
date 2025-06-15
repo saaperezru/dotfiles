@@ -30,7 +30,7 @@ resource "aws_security_group" "ingress-ssh-test" {
 
   ingress {
     cidr_blocks = [
-      "0.0.0.0/0"
+      "${trimspace(data.http.myip.response_body)}/32"
     ]
 
     from_port = 22
@@ -46,6 +46,8 @@ resource "aws_security_group" "ingress-ssh-test" {
   }
 }
 
+
+
 resource "aws_security_group" "ingress-web" {
   name   = "allow-web-sg"
   vpc_id = "${aws_vpc.test-env.id}"
@@ -55,8 +57,18 @@ resource "aws_security_group" "ingress-web" {
       "0.0.0.0/0"
     ]
 
-    from_port = 8000
-    to_port   = 8000
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+  }
+
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+
+    from_port = 80
+    to_port   = 80
     protocol  = "tcp"
   }
 

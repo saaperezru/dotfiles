@@ -24,34 +24,68 @@ resource "aws_subnet" "subnet-uno" {
   availability_zone = "us-east-1a"
 }
 
+#resource "aws_cloudfront_distribution" "cdn_distribution" {
+#    origin {
+#        domain_name                   = aws_spot_instance_request.test_worker.public_dns
+#        origin_id                     = "${local.origin_id}"
+#        custom_origin_config {
+#            http_port                 = 80
+#            https_port                = 80
+#            origin_protocol_policy    = "http-only"
+#            origin_ssl_protocols      = ["TLSv1"]
+#        }
+#    }
+#
+#    enabled                           = true
+#
+#    default_cache_behavior {
+#        # allowed_methods         = ["HEAD", "GET", "OPTIONS", "PATCH", "POST", "PUT"]
+#        allowed_methods               = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+#        cached_methods                = ["HEAD", "GET"]
+#        target_origin_id              = "${local.origin_id}"
+#
+#    forwarded_values {
+#        query_string                  = true
+#        headers                       = ["Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+#        cookies {
+#            forward                   = "none"
+#        }
+#    }
+#
+#    viewer_protocol_policy            = "redirect-to-https"
+#        min_ttl                       = 0
+#        default_ttl                   = 3600
+#        max_ttl                       = 86400
+#    }
+#
+#    restrictions {
+#        geo_restriction {
+#            restriction_type          = "none"
+#            }
+#    }
+#
+#    price_class                       = "${var.cloudfront_price_class}"
+#
+#    viewer_certificate {
+#        # cloudfront_default_certificate  = true
+#        ssl_support_method            = "sni-only"
+#        acm_certificate_arn           = "${data.aws_acm_certificate.certificate.arn}"
+#    }
+#
+#    tags = {
+#        description                   = "${var.component_name}-cdn"
+#        Name                          = "${var.component_name}-cdn"
+#        app                           = "${var.common_value}"
+#    }
+#}
+
 resource "aws_security_group" "ingress-ssh-test" {
   name   = "allow-ssh-sg"
   vpc_id = "${aws_vpc.test-env.id}"
 
   ingress {
     cidr_blocks = [
-      "0.0.0.0/0"
-    ]
-
-    from_port = 443
-    to_port   = 443
-    protocol  = "tcp"
-  }
-
-  ingress {
-    cidr_blocks = [
-      "0.0.0.0/0"
-    ]
-
-    from_port = 80
-    to_port   = 80
-    protocol  = "tcp"
-  }
-
-
-  ingress {
-    cidr_blocks = [
-      "0.0.0.0/0"
+      "${trimspace(data.http.myip.response_body)}/32"
     ]
 
     from_port = 22
@@ -67,8 +101,6 @@ resource "aws_security_group" "ingress-ssh-test" {
   }
 }
 
-
-
 resource "aws_security_group" "ingress-web" {
   name   = "allow-web-sg"
   vpc_id = "${aws_vpc.test-env.id}"
@@ -78,8 +110,8 @@ resource "aws_security_group" "ingress-web" {
       "0.0.0.0/0"
     ]
 
-    from_port = 8000
-    to_port   = 8000
+    from_port = 8080
+    to_port   = 8080
     protocol  = "tcp"
   }
 

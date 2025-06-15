@@ -52,7 +52,6 @@ call vundle#begin()
     " see :h vundle for more details or wiki for FAQ
     " Put your non-Plugin stuff after this line
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-let mapleader = " "
 nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>A :Windows<CR>
