@@ -24,5 +24,6 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set number 
+let mapleader =" "
 
 source ~/.vimrc.vundle

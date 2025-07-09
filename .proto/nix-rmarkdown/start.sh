@@ -1,4 +1,5 @@
-mkdir $1
+mkdir -p $1
+mkdir -p $1/dist
 cp -r ~/.proto/nix-rmarkdown/* $1/
 rm $1/start.sh
 cd $1
